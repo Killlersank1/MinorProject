@@ -6,10 +6,11 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 import datetime
+import flask
 import plotly.express as px 
 import plotly.graph_objs as go # (need to pip install plotly==4.4.1)
 
-df = pd.read_csv('C:\sank\sales_updated.csv')
+df = pd.read_csv('sales_updated.csv')
 df['Ship Date'] = pd.to_datetime(df['Ship Date'])
 resampled = df.resample('M',on = 'Ship Date').sum().reset_index()
 resampled['month']=resampled['Ship Date'].apply(lambda x : x.strftime('%B'))
